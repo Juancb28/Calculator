@@ -14,8 +14,8 @@ public class App extends Application {
 
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
-
-        stage.show();
+        View calculatorView = new View();
+        calculatorView.calculatorDisplay(stage);
     }
 
 
