@@ -6,13 +6,23 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class View {
-    
-      private Image calculatorIcon;
+
+    private Image calculatorIcon;
 
     public void calculatorDisplay(@SuppressWarnings("exports") Stage stage) {
-        File iconFile = new File("src/main/resources/Images/calculatorIcon.png");
+        File iconFile = new File("calculator-application\\src\\main\\resources\\images\\calculatorIcon.png");
 
-        calculatorIcon = new Image(iconFile.getAbsolutePath());
+        /*
+         * if (iconFile.exists()) {
+         * System.out.println("Existe");
+         * System.exit(0);
+         * } else {
+         * System.out.println("No existe");
+         * System.exit(0);
+         * }
+         */
+
+        calculatorIcon = new Image(iconFile.toURI().toString());
 
         stage.setTitle("Calculator");
         stage.setFullScreen(false);
