@@ -12,6 +12,7 @@ public class ViewCalculator {
 
     private Image calculatorIcon;
     private Label display;
+    private Calculator calculator;
 
     public void calculatorDisplay(@SuppressWarnings("exports") Stage stage) {
         File iconFile = new File("calculator-application\\src\\main\\resources\\images\\calculatorIcon.png");
@@ -48,12 +49,13 @@ public class ViewCalculator {
         group.getChildren().add(display);
     }
 
+    @SuppressWarnings("unlikely-arg-type")
     private void buttonsCalculator(Group group) {
         String[][] buttonLabels = {
-            {"7", "8", "9", "/"},
-            {"4", "5", "6", "*"},
-            {"1", "2", "3", "-"},
-            {"0", "C", "=", "+"}
+                { "7", "8", "9", "/" },
+                { "4", "5", "6", "*" },
+                { "1", "2", "3", "-" },
+                { "0", "C", "=", "+" }
         };
 
         for (int i = 0; i < buttonLabels.length; i++) {
@@ -63,7 +65,19 @@ public class ViewCalculator {
                 button.setLayoutY(100 + i * 50);
                 button.setMinSize(40, 40);
                 button.setStyle("-fx-background-color: lightblue; -fx-padding: 10px;");
-                button.setOnMouseClicked(e -> display.setText(button.getText() + " clicked"));
+                button.setOnMouseClicked(e -> {
+                    if (e.getEventType().equals(true))
+                        display.setText(button.getText() + " clicked");
+
+                    
+                    //TODO Change this logic into CalculatorController 
+                    switch (button.getText()) {
+                        case "+" -> calculator.adding(Double.parseDouble(display.getText()));
+                        case "-" -> calculator.subtract(Double.parseDouble(display.getText()));
+                        case "*" -> calculator.multiply(Double.parseDouble(display.getText()));
+                        case "/" -> calculator.divide(Double.parseDouble(display.getText()));
+                    }
+                });
                 group.getChildren().add(button);
             }
         }

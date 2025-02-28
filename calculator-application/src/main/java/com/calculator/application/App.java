@@ -12,7 +12,7 @@ public class App extends Application {
 
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
-        View calculatorView = new View();
+        ViewCalculator calculatorView = new ViewCalculator();
         calculatorView.calculatorDisplay(stage);
     }
 
