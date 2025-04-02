@@ -64,7 +64,7 @@ public class ViewCalculator {
                 button.setLayoutX(20 + j * 50);
                 button.setLayoutY(100 + i * 50);
                 button.setMinSize(40, 40);
-                button.setStyle("-fx-background-color: lightblue; -fx-padding: 10px;");
+                button.setStyle("-fx-background-color: orange; -fx-padding: 10px;");
                 button.setOnMouseClicked(e -> {
                     if (e.getEventType().equals(true))
                         display.setText(button.getText() + " clicked");
