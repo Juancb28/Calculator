@@ -12,7 +12,6 @@ public class ViewCalculator {
 
     private Image calculatorIcon;
     private Label display;
-    private Calculator calculator;
 
     public void calculatorDisplay(@SuppressWarnings("exports") Stage stage) {
         File iconFile = new File("calculator-application\\src\\main\\resources\\images\\calculatorIcon.png");
@@ -45,11 +44,12 @@ public class ViewCalculator {
         display.setMinHeight(30);
         display.setMinWidth(190);
         display.setStyle("-fx-background-color: lightblue; -fx-padding: 10px;");
+        display.setMaxHeight(40);
+        display.setMaxWidth(190);
 
         group.getChildren().add(display);
     }
 
-    @SuppressWarnings("unlikely-arg-type")
     private void buttonsCalculator(Group group) {
         String[][] buttonLabels = {
                 { "7", "8", "9", "/" },
@@ -64,22 +64,37 @@ public class ViewCalculator {
                 button.setLayoutX(20 + j * 50);
                 button.setLayoutY(100 + i * 50);
                 button.setMinSize(40, 40);
-                button.setStyle("-fx-background-color: orange; -fx-padding: 10px;");
+                button.setStyle("-fx-background-color: lightblue; -fx-padding: 10px;");
                 button.setOnMouseClicked(e -> {
-                    if (e.getEventType().equals(true))
-                        display.setText(button.getText() + " clicked");
 
-                    
-                    //TODO Change this logic into CalculatorController 
-                    switch (button.getText()) {
-                        case "+" -> calculator.adding(Double.parseDouble(display.getText()));
-                        case "-" -> calculator.subtract(Double.parseDouble(display.getText()));
-                        case "*" -> calculator.multiply(Double.parseDouble(display.getText()));
-                        case "/" -> calculator.divide(Double.parseDouble(display.getText()));
-                    }
+                    CalculatorController calculatorController = new CalculatorController();
+
+                    calculatorController.keyPressed(display, button, e);
+
+                    /*
+                     * if (display.getText() != null) {
+                     * switch (button.getText()) {
+                     * case "0" -> display.setText(display.getText() + "0");
+                     * case "1" -> display.setText(display.getText() + "1");
+                     * case "2" -> display.setText(display.getText() + "2");
+                     * case "3" -> display.setText(display.getText() + "3");
+                     * case "4" -> display.setText(display.getText() + "4");
+                     * case "5" -> display.setText(display.getText() + "5");
+                     * case "6" -> display.setText(display.getText() + "6");
+                     * case "7" -> display.setText(display.getText() + "7");
+                     * case "8" -> display.setText(display.getText() + "8");
+                     * case "9" -> display.setText(display.getText() + "9");
+                     * case "+" -> display.setText(display.getText() + "+");
+                     * case "-" -> display.setText(display.getText() + "-");
+                     * case "*" -> display.setText(display.getText() + "*");
+                     * case "/" -> display.setText(display.getText() + "/");
+                     * }
+                     * }
+                     */
                 });
                 group.getChildren().add(button);
             }
         }
     }
+
 }
